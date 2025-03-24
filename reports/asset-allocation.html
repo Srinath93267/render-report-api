@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Portfolio Performance Report</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0.5in;
+        }
+
+        h1 {
+            color: #0056b3;
+        }
+
+        h3,
+        h4 {
+            color: #333;
+        }
+
+        footer {
+            position: fixed;
+            bottom: 0;
+        }
+
+        .disclaimer {
+            font-size: 0.8em;
+            color: #666;
+            bottom: 0;
+            margin-right: 10pt;
+        }
+
+        .charts {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .pRiskLevel {
+            text-align: center;
+            font-size: 1.2em;
+            color: #0056b3;
+        }
+
+        table{
+            width:650px;
+            background-color: #0056b3;
+            text-align: justify;
+        }
+        thead{
+            color:white;
+        }
+        tbody{
+            background-color: white;
+            border-color: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div>
+            <h1>Asset Allocation</h1>
+            <h3>Client Name: ClientName</h3>
+        </div>
+        <div>
+            <div class="charts">
+                <div><img src="AllocationPercentageChart" alt="Allocation Percentage Chart"></div>
+                <div><img src="HistoricalPerformanceChart" alt="Historical PerformanceChart Chart"></div>
+                <div><img src="TargetAllocationPercentageChart" alt="Target Allocation Percentage Chart"></div>
+            </div>
+            <div class="charts">
+                <div><img src="VolatilityRiskLevel" alt="Volatility Risk Level Chart"></div>
+                <div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th scope="col" class="px-6 py-3">
+                                    Asset Class
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Liquidity Level
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Deviation from Target
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Divident Yield
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            varTable
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <footer>
+                <h6>Report Date: ReportDate</h6>
+                <p class="disclaimer">
+                    The data used in this report is based on the most recent available information. However, market
+                    conditions and asset
+                    values may change over time, and past performance is not indicative of future results.
+                </p>
+            </footer>
+        </div>
+    </div>
+</body>
+
+</html>
