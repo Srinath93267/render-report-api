@@ -63,7 +63,7 @@ app.get("/GetPortfolioPerformanceReport", (req, res, next) => {
 
             const pdfBase64 = Buffer.from(pdfBuffer).toString('base64');
 
-            console.log("PDF generated successfully for the Account: " + req.headers.account + ", Time: "+new Date().toString().replace(/\.\w*/, ''));
+            console.log("PDF generated successfully for the Account: " + req.headers.account + ", Time: " + new Date().toString().replace(/\.\w*/, ''));
 
             res.status(200).json({ Report: "data:application/pdf;base64," + pdfBase64 });
         })();
@@ -106,14 +106,13 @@ app.get("/GetAssetAllocationReport", (req, res, next) => {
             htmlContent = htmlContent.replace("VolatilityRiskLevel", volatilityRiskLevelbase64Image);
             htmlContent = htmlContent.replace("ClientName", data.clientName);
             htmlContent = htmlContent.replace("ReportDate", new Date().toLocaleDateString("en-GB"));
-            let table="";
-            for (let i = 0; i < data.assetClass.length;i++)
-            {
-                table=table+"<tr>"+
-                    "<th scope=\"row\">" + data.assetClass[i] +"</th>"+
-                    "<td>" + data.liquidityLevel[i]+"</td>"+
-                    "<td>" + data.deviationFromTarget[i]+"</td>"+
-                    "<td>" + data.dividendYield[i]+"</td>"+
+            let table = "";
+            for (let i = 0; i < data.assetClass.length; i++) {
+                table = table + "<tr>" +
+                    "<th scope=\"row\">" + data.assetClass[i] + "</th>" +
+                    "<td>" + data.liquidityLevel[i] + "</td>" +
+                    "<td>" + data.deviationFromTarget[i] + "</td>" +
+                    "<td>" + data.dividendYield[i] + "</td>" +
                     "</tr>";
             }
             htmlContent = htmlContent.replace("varTable", table);
@@ -149,7 +148,10 @@ app.get("/GetAssetAllocationReport", (req, res, next) => {
 
 });
 
-app.listen(3000, () => {
-    console.log("Server running on port 3000");
-});
+exports.api = functions.https.onRequest(app);
+
+// Uncomment the following lines to run the server locally
+// app.listen(3001, () => {
+//     console.log("Server running on port 3001");
+// });
 
