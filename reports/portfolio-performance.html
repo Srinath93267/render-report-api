@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Portfolio Performance Report</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0.5in;
+        }
+
+        h1 {
+            color: #0056b3;
+        }
+
+        h3,
+        h4 {
+            color: #333;
+        }
+
+        footer {
+            position: fixed;
+            bottom: 0;
+        }
+
+        .disclaimer {
+            font-size: 0.8em;
+            color: #666;
+            bottom: 0;
+            margin-right: 10pt;
+        }
+
+        .charts {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .pRiskLevel {
+            text-align: center;
+            font-size: 1.2em;
+            color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div>
+            <h1>Portfolio Performance</h1>
+            <h3>Client Name: ClientName</h3>
+        </div>
+        <div>
+            <h4>Total Portfolio Value: TotalPortfolioValue</h4>
+            <p>
+                This Portfolio Performance Report provides a comprehensive analysis of the client's investment holdings,
+                tracking the
+                overall growth, asset distribution, and risk exposure. It aims to assist in evaluating the effectiveness
+                of
+                the current
+                investment strategy and making informed decisions for future financial goals.
+            </p>
+            <div class="charts">
+                <div><img src="InvestmentGrowthChart" alt="Investment Growth Area Chart"></div>
+                <div><img src="AnnualizedReturnsChart" alt="Investment Growth Bar Chart"></div>
+                <div>
+                    <img src="RiskLevelChart" alt="Risk Level Radial Bar Chart">
+                    <p class="pRiskLevel">Risk Level: RiskLevelText</p>
+                </div>
+            </div>
+            <footer>
+                <h6>Report Date: ReportDate</h6>
+                <p class="disclaimer">
+                    The data presented in this report is derived from reliable sources, but its accuracy or completeness
+                    cannot
+                    be
+                    guaranteed. Market conditions, external factors, and system limitations may impact the results.
+                </p>
+            </footer>
+        </div>
+    </div>
+</body>
+
+</html>
