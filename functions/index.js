@@ -1,4 +1,4 @@
-const functions = require("firebase-functions");
+const { https } = require("firebase-functions/v2");
 const express = require('express');
 const app = express();
 
@@ -13,7 +13,7 @@ app.use(cors({
     origin: config.cors
 }))
 
-app.get("/GetPortfolioPerformanceReport", async (req, res, next) => {
+app.get("/GetPortfolioPerformanceReport", async (req, res) => {
 
     try {
 
@@ -78,7 +78,7 @@ app.get("/GetPortfolioPerformanceReport", async (req, res, next) => {
 
 });
 
-app.get("/GetAssetAllocationReport", async (req, res, next) => {
+app.get("/GetAssetAllocationReport", async (req, res) => {
 
     try {
 
@@ -154,7 +154,14 @@ app.get("/GetAssetAllocationReport", async (req, res, next) => {
 });
 
 try {
-    exports.api = functions.https.onRequest(app);
+    exports.api = https.onRequest(
+        {
+            memory: "512MiB",        // use MiB format
+            timeoutSeconds: 60,
+            cpu: 1
+        },
+        app
+    );
 }
 catch (error) {
     console.error("Error exporting function: ", error);
@@ -166,4 +173,3 @@ catch (error) {
 // app.listen(3001, () => {
 //     console.log("Server running on port 3001");
 // });
-
