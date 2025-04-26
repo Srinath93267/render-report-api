@@ -1,4 +1,4 @@
-name: Deploy Firebase Functions to Firebase
+name: Deploy Firebase Functions
 
 on:
   push:
@@ -27,17 +27,8 @@ jobs:
         cd functions
         npm ci || npm install
 
-    - name: 🔐 Decode and Save Firebase Service Account Key
-      run: |
-        echo "$GCP_SA_KEY" | base64 -d > "$HOME/firebase-key.json"
+    - name: 🚀 Deploy Firebase Functions using Firebase Token
       env:
-        GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
-
-    - name: 🔐 Authenticate with gcloud
-      run: |
-        gcloud auth activate-service-account --key-file="$HOME/firebase-key.json"
-        gcloud config set project render-report-api-b5ed1
-
-    - name: 🚀 Deploy Firebase Functions Only
+        FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
       run: |
         firebase deploy --only functions --project render-report-api-b5ed1
