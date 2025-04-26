@@ -1,4 +1,4 @@
-name: Deploy Firebase Functions to Firebase
+name: Deploy Firebase Functions
 
 on:
   push:
@@ -22,18 +22,15 @@ jobs:
     - name: Install Firebase CLI
       run: npm install -g firebase-tools
 
-    - name: Install dependencies
+    - name: Install Dependencies
       run: |
         cd functions
         npm ci || npm install
 
-    - name: Authenticate with Firebase
-      run: |
-        echo "$FIREBASE_SERVICE_ACCOUNT" | base64 -d > "${HOME}/firebase-key.json"
-        gcloud auth activate-service-account --key-file="${HOME}/firebase-key.json"
-        gcloud config set project render-report-api-b5ed1
-      env:
-        FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+    - name: Authenticate with Firebase using Service Account
+      uses: w9jds/firebase-action@v2.2.0
+      with:
+        credentials: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
 
     - name: Deploy Firebase Functions Only
       run: |
