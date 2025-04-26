@@ -1,4 +1,4 @@
-name: Deploy Firebase Functions
+name: Deploy Firebase Functions to Firebase
 
 on:
   push:
@@ -11,27 +11,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout Repository
+    - name: 📦 Checkout Repository
       uses: actions/checkout@v3
 
-    - name: Set up Node.js
+    - name: 🧰 Set up Node.js
       uses: actions/setup-node@v3
       with:
         node-version: 20
 
-    - name: Install Firebase CLI
+    - name: 🔧 Install Firebase CLI
       run: npm install -g firebase-tools
 
-    - name: Install Dependencies
+    - name: 📂 Install Dependencies
       run: |
         cd functions
         npm ci || npm install
 
-    - name: Authenticate with Firebase using Service Account
+    - name: 🔐 Authenticate with Firebase
       uses: w9jds/firebase-action@v2.2.0
       with:
-        credentials: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
-
-    - name: Deploy Firebase Functions Only
-      run: |
-        firebase deploy --only functions --project render-report-api-b5ed1
+        args: deploy --only functions --project render-report-api-b5ed1
+      env:
+        GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
