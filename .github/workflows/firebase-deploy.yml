@@ -19,12 +19,12 @@ jobs:
       with:
         node-version: 20
 
-    - name: ✍️ Create config.json
+    - name: ✍️ Create config.js from Template
       run: |
-          cp functions/config.js.example functions/config.js
-          sed -i 's/PLACEHOLDER_SECRET/${{ secrets.API_SECRET_KEY }}/g' functions/config.js
-          sed -i 's/PLACEHOLDER_APIPREFIX/${{ secrets.API_PREFIX }}/g' functions/config.js
-          sed -i 's/PLACEHOLDER_CORS/${{ secrets.CORS }}/g' functions/config.js
+        cp functions/config.js.example functions/config.js
+        sed -i 's#PLACEHOLDERT_SECRET#'"${{ secrets.API_SECRET_KEY }}"'#g' functions/config.js
+        sed -i 's#PLACEHOLDER_CORS#'"${{ secrets.CORS }}"'#g' functions/config.js
+        sed -i 's#PLACEHOLDER_APIPREFIX#'"${{ secrets.API_PREFIX }}"'#g' functions/config.js
 
     - name: 🔧 Install Firebase CLI
       run: npm install -g firebase-tools
