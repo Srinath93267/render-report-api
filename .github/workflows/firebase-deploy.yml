@@ -27,9 +27,17 @@ jobs:
         cd functions
         npm ci || npm install
 
-    - name: 🔐 Authenticate with Firebase
-      uses: w9jds/firebase-action@v2.2.0
-      with:
-        args: deploy --only functions --project render-report-api-b5ed1
+    - name: 🔐 Decode and Save Firebase Service Account Key
+      run: |
+        echo "$GCP_SA_KEY" | base64 -d > "$HOME/firebase-key.json"
       env:
         GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
+
+    - name: 🔐 Authenticate with gcloud
+      run: |
+        gcloud auth activate-service-account --key-file="$HOME/firebase-key.json"
+        gcloud config set project render-report-api-b5ed1
+
+    - name: 🚀 Deploy Firebase Functions Only
+      run: |
+        firebase deploy --only functions --project render-report-api-b5ed1
