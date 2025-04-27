@@ -7,4 +7,4 @@ const API_URLS = {
     GETASSETALLOCATIONDATA: BASE_API_URL + "GetAssetAllocationData"
 };
 
-export default API_URLS;
+module.exports = API_URLS;

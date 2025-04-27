@@ -2,7 +2,7 @@ name: Deploy Firebase Functions
 
 on:
   push:
-    branches: [ main, feature/feature-branch-1 ]
+    branches: [ main ]
   pull_request:
     branches: [ main ]
 
