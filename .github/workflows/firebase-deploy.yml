@@ -23,7 +23,8 @@ jobs:
       run: |
         cp functions/config.js.example functions/config.js
         sed -i 's#PLACEHOLDERT_SECRET#'"${{ secrets.API_SECRET_KEY }}"'#g' functions/config.js
-        sed -i 's#PLACEHOLDER_CORS#'"${{ secrets.CORS }}"'#g' functions/config.js
+        sed -i 's#PLACEHOLDER_CORS1#'"${{ secrets.CORS1 }}"'#g' functions/config.js
+        sed -i 's#PLACEHOLDER_CORS2#'"${{ secrets.CORS2 }}"'#g' functions/config.js
         sed -i 's#PLACEHOLDER_APIPREFIX#'"${{ secrets.API_PREFIX }}"'#g' functions/config.js
 
     - name: 🔧 Install Firebase CLI
