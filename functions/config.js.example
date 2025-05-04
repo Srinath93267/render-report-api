@@ -1,0 +1,10 @@
+const BASE_API_URL = "PLACEHOLDER_APIPREFIX";
+
+const API_URLS = {
+    apiSecretKey: "PLACEHOLDERT_SECRET",
+    cors: "PLACEHOLDER_CORS",
+    GETPORTFOLIOPERFORMANCEDATA: BASE_API_URL + "GetPortfolioPerformanceData",
+    GETASSETALLOCATIONDATA: BASE_API_URL + "GetAssetAllocationData"
+};
+
+module.exports = API_URLS;
