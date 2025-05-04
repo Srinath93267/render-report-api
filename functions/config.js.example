@@ -8,6 +8,7 @@ const allowedOrigins = [
 
 const API_URLS = {
     apiSecretKey: "PLACEHOLDERT_SECRET",
+    CORS:allowedOrigins,
     GETPORTFOLIOPERFORMANCEDATA: BASE_API_URL + "GetPortfolioPerformanceData",
     GETASSETALLOCATIONDATA: BASE_API_URL + "GetAssetAllocationData"
 };

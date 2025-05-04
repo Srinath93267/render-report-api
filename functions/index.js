@@ -9,22 +9,18 @@ const chartService = require('./chartService');
 var cors = require('cors')
 const chromium = require("chrome-aws-lambda");
 
-// List of allowed origins
-const allowedOrigins = config.allowedOrigins;
-
-const corsOptions = {
+app.use(cors({
     origin: function (origin, callback) {
-        // Allow requests with no origin (like mobile apps or curl requests)
+        // Allow requests with no origin (like mobile apps or curl)
         if (!origin) return callback(null, true);
-        if (allowedOrigins.includes(origin)) {
+
+        if (config.CORS.includes(origin)) {
             callback(null, true);
         } else {
             callback(new Error('Not allowed by CORS'));
         }
     }
-};
-
-app.use(cors(corsOptions));
+}))
 
 app.get("/GetPortfolioPerformanceReport", async (req, res) => {
 
