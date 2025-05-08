@@ -27,7 +27,8 @@ app.get("/GetPortfolioPerformanceReport", async (req, res) => {
     try {
 
         const data = await apiService.getPortfolioPerformanceData(req.headers.account);
-
+        const ReportDate = req.headers.reportdate;
+        
         // Chart configuration
         const investmentGrowthImageBuffer = await chartService.getInvestmentGrowthChart(data);
         const investmentGrowthbase64Image = `data:image/png;base64,${investmentGrowthImageBuffer.toString("base64")}`
@@ -49,7 +50,7 @@ app.get("/GetPortfolioPerformanceReport", async (req, res) => {
         htmlContent = htmlContent.replace("RiskLevelText", data.riskLevel);
         htmlContent = htmlContent.replace("TotalPortfolioValue", '₹' + data.totalPortfolioValue);
         htmlContent = htmlContent.replace("ClientName", data.clientName);
-        htmlContent = htmlContent.replace("ReportDate", new Date().toLocaleDateString("en-GB"));
+        htmlContent = htmlContent.replace("ReportDate", ReportDate);
 
         // Launch Puppeteer
         const browser = await chromium.puppeteer.launch({
@@ -92,6 +93,7 @@ app.get("/GetAssetAllocationReport", async (req, res) => {
     try {
 
         const data = await apiService.getAssetAllocationData(req.headers.account);
+        const ReportDate = req.headers.reportdate;
 
         // Chart configuration
         const allocationPercentageImageBuffer = await chartService.getAllocationPercentageChart(data);
@@ -115,7 +117,7 @@ app.get("/GetAssetAllocationReport", async (req, res) => {
         htmlContent = htmlContent.replace("TargetAllocationPercentageChart", targetAllocationPercentagebase64Image);
         htmlContent = htmlContent.replace("VolatilityRiskLevel", volatilityRiskLevelbase64Image);
         htmlContent = htmlContent.replace("ClientName", data.clientName);
-        htmlContent = htmlContent.replace("ReportDate", new Date().toLocaleDateString("en-GB"));
+        htmlContent = htmlContent.replace("ReportDate", ReportDate);
         let table = "";
         for (let i = 0; i < data.assetClass.length; i++) {
             table = table + "<tr>" +
